@@ -8,6 +8,7 @@ import JobPositionService from "../services/jobPositionService";
 import WorkingTimeService from "../services/workingTimeService";
 import WorkingMethodService from "../services/workingMethodService";
 import JobAdvertisementService from "../services/jobAdvertisementService";
+import swal from 'sweetalert';
 
 export default function JobAdCreate() {
   let jobAdvertisementService = new JobAdvertisementService();
@@ -45,7 +46,12 @@ export default function JobAdCreate() {
       values.maxSalary = parseInt(values.maxSalary);
       values.quota = parseInt(values.quota);
 
-      jobAdvertisementService.add(values).then((result) => console.log(result));
+      jobAdvertisementService.add(values).then((result) => console.log(result)).then(swal({
+        title: "Succeed!",
+        text: "Job Advertisement is added!",
+        icon: "success",
+        button: "Ok"
+      }).then(function(){window.location.reload()}));;
     },
   });
 
