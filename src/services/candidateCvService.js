@@ -21,4 +21,8 @@ export default class CandidateCvService{
         return axios.post("http://localhost:8080/api/candidatesCvs/addCvAvatar?id="+id,photo)
     }
 
+    getById(id){
+        return axios.get("http://localhost:8080/api/candidatesCvs/getById?id="+id)
+    }
+
 }

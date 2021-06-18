@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Header, Icon } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Dropdown, Input, TextArea, Card, Form, Grid } from "semantic-ui-react";
@@ -247,7 +246,6 @@ export default function JobAdCreate() {
                 <Grid.Column width={8}>
                 <Input
                   style={{ width: "100%" }}
-                  type="date"
                   error={Boolean(formik.errors.expirationDate)}
                   onChange={(event, data) =>
                     handleChangeSemantic(data.value, "expirationDate")

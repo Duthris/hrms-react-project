@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import JobAdvertisementService from "../services/jobAdvertisementService";
-import { Menu, Table, Header, Icon, Button } from "semantic-ui-react";
+import { Table, Header, Icon, Button } from "semantic-ui-react";
 import swal from 'sweetalert';
 
 export default function JobAdvertisementConfirm() {
@@ -12,7 +12,7 @@ export default function JobAdvertisementConfirm() {
     jobAdvertisementService
       .getAllPassiveJobs()
       .then((result) => setJobs(result.data.data));
-  }, []);
+  });
 
   const activate = (id) => {
     jobAdvertisementService.activate(id, true).then(swal({
@@ -59,7 +59,7 @@ export default function JobAdvertisementConfirm() {
             <Table.HeaderCell>Working Method</Table.HeaderCell>
             <Table.HeaderCell>Deadline</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
-            <Table.HeaderCell>Detail</Table.HeaderCell>
+            <Table.HeaderCell>Approval Status</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -85,11 +85,11 @@ export default function JobAdvertisementConfirm() {
                 days
               </Table.Cell>
               <Table.Cell>
-                {job.activationStatus == true ? "Active" : "Passive"}
+                {job.activationStatus === true ? "Active" : "Passive"}
               </Table.Cell>
               <Table.Cell>
-                <Button size="tiny" positive onClick={(e) => activate(job.id)}><Icon name="check" /> Confirm</Button>
-                <Button size="tiny" negative onClick={(e) => deleteJobAdvertisement(job.id)}><Icon name="trash alternate" /> Delete</Button>
+                <Button fluid size="tiny" positive onClick={(e) => activate(job.id)}><Icon name="check" /> Confirm</Button>
+                <Button fluid size="tiny" negative onClick={(e) => deleteJobAdvertisement(job.id)}><Icon name="trash alternate" /> Delete</Button>
               </Table.Cell>
             </Table.Row>
           ))}

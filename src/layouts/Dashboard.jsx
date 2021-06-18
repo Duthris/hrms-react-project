@@ -13,6 +13,7 @@ import CandidateCvDetailList from "../pages/CandidateCvDetailList";
 import JobAdvertisementPost from "../pages/JobAdvertisementPost"
 import JobAdvertisementConfirm from "../pages/JobAdvertisementConfirmation";
 import JobAdvertisementDetails from "../pages/JobAdvertisementDetails";
+import EmployerDetailList from "../pages/EmployerDetailList";
 
 export default function Dashboard() {
   return (
@@ -26,6 +27,7 @@ export default function Dashboard() {
             <Route exact path="/jobAdvertisements" component={JobAdvertisementList} />
             <Route exact path="/employees" component={EmployeeList} />
             <Route exact path="/employers" component={EmployerList} />
+            <Route exact path="/employers/:id" component={EmployerDetailList} />
             <Route exact path="/jobPositions" component={JobPositionList} />
             <Route exact path="/candidates" component={CandidateList} />
             <Route exact path="/candidateCvs" component={CandidateCvList} />

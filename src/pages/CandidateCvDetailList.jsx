@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CandidateCvService from "../services/candidateCvService";
-import { Card, Image, Table, Header, Button, Icon } from "semantic-ui-react";
+import { Card, Image, Table, Header, Button, Icon, Segment } from "semantic-ui-react";
 
 export default function CandidateCvDetailList() {
   let { id } = useParams();
@@ -11,7 +11,7 @@ export default function CandidateCvDetailList() {
   useEffect(() => {
     let candidateCvService = new CandidateCvService();
     candidateCvService
-      .getByCandidateId(id)
+      .getById(id)
       .then((result) => setCv(result.data.data));
   }, [id]);
 
@@ -22,8 +22,7 @@ export default function CandidateCvDetailList() {
       <Card.Group>
         <Card color="violet" fluid>
           <Card.Content>
-          <Image  circular avatar rounded size="large" floated="left"/>
-
+          <Image src={cv.avatarLink} circular rounded size="small"/>
             <Card.Header>
               {cv.candidate?.firstName + " " + cv.candidate?.lastName}
             </Card.Header>
@@ -85,33 +84,32 @@ export default function CandidateCvDetailList() {
                             target={"_blank"}
                             rel="noopener noreferrer"
                           >
+                            <Segment basic>
                             <Button secondary>
                               <Icon name="github" /> Github
                             </Button>
+                            </Segment>
                           </a>
                         </Header.Content>
                       </Header>
                     </Table.Cell>
-                    <Table.Cell>{cv.github}</Table.Cell>
-                  </Table.Row>
-
-                  <Table.Row>
                     <Table.Cell>
-                      <Header as="h4" image>
+                    <Header as="h4" image>
                         <Header.Content>
                           <a
                             href={cv.linkedinLink}
                             target={"_blank"}
                             rel="noopener noreferrer"
                           >
+                            <Segment basic>
                             <Button color="linkedin">
                               <Icon name="linkedin" /> Linked.in
                             </Button>
+                            </Segment>
                           </a>
                         </Header.Content>
                       </Header>
                     </Table.Cell>
-                    <Table.Cell>{cv.linkedinLink}</Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>
@@ -122,7 +120,7 @@ export default function CandidateCvDetailList() {
       </Card.Group>
       <Card color="violet" fluid>
         <Card.Content header="Cover Letter" />
-        <Card.Content description={cv.description} />
+        <Card.Content description={cv.coverLetter} />
       </Card>
 
       <Card color="violet" fluid>
@@ -142,8 +140,36 @@ export default function CandidateCvDetailList() {
               <Table.Row key={school.id}>
                 <Table.Cell>{school.schoolName}</Table.Cell>
                 <Table.Cell>{school.department}</Table.Cell>
-                <Table.Cell>{school.startingDate}</Table.Cell>
-                <Table.Cell>{school.graduationDate}</Table.Cell>
+                <Table.Cell>{new Date(school.startingDate).toLocaleDateString()}</Table.Cell>
+                <Table.Cell>{school.graduationDate == null ? "Continue" : 
+                new Date(school.graduationDate).toLocaleDateString()}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </Card>
+
+      
+      <Card color="violet" fluid>
+        <Card.Content header="Job Experiences" />
+        <Table celled color={"violet"}>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Company Name</Table.HeaderCell>
+              <Table.HeaderCell>Job Position</Table.HeaderCell>
+              <Table.HeaderCell>Starting Date</Table.HeaderCell>
+              <Table.HeaderCell>Quited Date</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {cv.jobExperiences?.map((jobExperience) => (
+              <Table.Row key={jobExperience.id}>
+                <Table.Cell>{jobExperience.companyName}</Table.Cell>
+                <Table.Cell>{jobExperience.jobPosition?.positionName}</Table.Cell>
+                <Table.Cell>{new Date(jobExperience.startingDate).toLocaleDateString()}</Table.Cell>
+                <Table.Cell>{jobExperience.endDate === null ? "Continue" : 
+                new Date(jobExperience.endDate).toLocaleDateString()}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>

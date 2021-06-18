@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Table, Header, Icon, Button } from "semantic-ui-react";
+import { Table, Header, Icon } from "semantic-ui-react";
 import CandidateService from "../services/candidateService";
-import CandidateCvService from "../services/candidateCvService";
-import { NavLink } from "react-router-dom";
 
 export default function CandidateList() {
   const [candidates, setCandidates] = useState([]);
@@ -20,13 +18,13 @@ export default function CandidateList() {
         <Icon name="list alternate outline" />
         <Header.Content>Candidates</Header.Content>
       </Header>
-      <Table color="violet" key="violet">
+      <Table color="violet">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>First Name</Table.HeaderCell>
             <Table.HeaderCell>Last Name</Table.HeaderCell>
             <Table.HeaderCell>E-mail</Table.HeaderCell>
-            <Table.HeaderCell>CV</Table.HeaderCell>
+            {/* <Table.HeaderCell>CV</Table.HeaderCell> */}
           </Table.Row>
         </Table.Header>
 
@@ -36,14 +34,14 @@ export default function CandidateList() {
               <Table.Cell>{candidate.firstName}</Table.Cell>
               <Table.Cell>{candidate.lastName}</Table.Cell>
               <Table.Cell>{candidate.email}</Table.Cell>
-              <Table.Cell>
+              {/* <Table.Cell>
                 <Button animated as={NavLink} to={`/candidateCvs/${candidate.id}`} color="violet" >
                 <Button.Content visible>Show</Button.Content>
                   <Button.Content hidden>
                     <Icon name="arrow right" />
                   </Button.Content>
                 </Button>
-              </Table.Cell>
+              </Table.Cell> */}
             </Table.Row>
           ))}
         </Table.Body>

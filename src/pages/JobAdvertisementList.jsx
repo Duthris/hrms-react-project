@@ -49,7 +49,7 @@ export default function JobAdvertisementList() {
               <Table.Cell>{job.workingMethod.workingMethod}</Table.Cell>
               <Table.Cell>
                 {(
-                  (new Date(job.expirationDate.slice(0, 10)).getTime() -
+                  (new Date(job.expirationDate).getTime() -
                     new Date(Date.now()).getTime()) /
                   86400000
                 )
@@ -58,10 +58,10 @@ export default function JobAdvertisementList() {
                 days
               </Table.Cell>
               <Table.Cell>
-                {job.activationStatus == true ? "Active" : "Passive"}
+                {job.activationStatus === true ? "Active" : "Passive"}
               </Table.Cell>
               <Table.Cell>
-                <Button animated as={NavLink} to={`/jobAdvertisements/${job.id}`} color="violet" content="Show" icon="right arrow">
+                <Button animated as={NavLink} to={`/jobAdvertisements/${job.id}`} color="violet">
                 <Button.Content visible>Show</Button.Content>
                   <Button.Content hidden>
                     <Icon name="arrow right" />

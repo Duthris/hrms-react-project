@@ -11,9 +11,9 @@ export default function SideBar() {
           Job Advertisement
         </Menu.Item>
 
-        <Menu.Item as={NavLink} to="/jobPositions" name="list alternate outline">
-          <Icon name="list alternate outline" />
-          Job Position
+        <Menu.Item as={NavLink} to="/candidateCvs" name="newspaper outline" >
+          <Icon name="newspaper outline"/>
+          Candidate Cvs
         </Menu.Item>
 
         <Menu.Item as={NavLink} to="/candidates" name="user">
@@ -31,10 +31,11 @@ export default function SideBar() {
           Employee
         </Menu.Item>
 
-        <Menu.Item as={NavLink} to="/candidateCvs" name="newspaper outline" >
-          <Icon name="newspaper outline"/>
-          Candidate Cvs
+        <Menu.Item as={NavLink} to="/jobPositions" name="list alternate outline">
+          <Icon name="list alternate outline" />
+          Job Position
         </Menu.Item>
+
       </Menu>
     </div>
   );

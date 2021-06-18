@@ -156,7 +156,7 @@ export default function JobAdvertisementDetails() {
                   <Table.Cell>{(
                   (new Date(job.expirationDate).getTime() -
                   new Date(Date.now()).getTime()) /
-                86400000 - 1)
+                86400000)
                   .toString().split(".", 1)}{" "} days</Table.Cell>
                 </Table.Row>
               </Table.Body>

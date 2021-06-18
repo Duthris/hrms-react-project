@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Header, Image, Table, Button, Icon } from "semantic-ui-react";
 import CandidateCvService from "../services/candidateCvService";
-import CandidateLanguageService from "../services/candidateLanguageService";
 
 export default function CandidateCvList() {
 
@@ -54,7 +53,7 @@ export default function CandidateCvList() {
               </Table.Cell>
 
               <Table.Cell>
-                <a href={cv.githubLink} target={"_blank"}>
+                <a href={cv.githubLink} target={"_blank"} rel="noreferrer">
                   <Button secondary>
                     <Icon name="github" /> Github
                   </Button>
@@ -62,7 +61,7 @@ export default function CandidateCvList() {
               </Table.Cell>
 
               <Table.Cell>
-                <a href={cv.linkedinLink} target={"_blank"} rel="noopener noreferrer">
+                <a href={cv.linkedinLink} target={"_blank"} rel="noreferrer">
                   <Button color="linkedin">
                     <Icon name="linkedin" /> Linked.in
                   </Button>
@@ -70,7 +69,7 @@ export default function CandidateCvList() {
               </Table.Cell>
 
               <Table.Cell>
-                <Button color="violet" animated as={Link} to={`/candidateCvs/${cv.candidate.id}`}>
+                <Button color="violet" animated as={Link} to={`/candidateCvs/${cv.id}`}>
                   <Button.Content visible>Show</Button.Content>
                   <Button.Content hidden>
                     <Icon name="arrow right" />
