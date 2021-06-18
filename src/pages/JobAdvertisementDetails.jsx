@@ -20,7 +20,7 @@ export default function JobAdvertisementDetails() {
         <Card.Content header="Description" />
         <Card.Content>{job.description}</Card.Content>
       </Card>
-      <Grid stackable>
+      <Grid centered stackable>
         <Grid.Row>
           <Grid.Column width={6}>
             <Table celled color={"violet"} stackable>

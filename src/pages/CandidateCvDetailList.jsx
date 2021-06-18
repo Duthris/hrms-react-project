@@ -21,8 +21,8 @@ export default function CandidateCvDetailList() {
     <div>
       <Card.Group>
         <Card color="violet" fluid>
+        <Image centered src={cv.avatarLink} bordered rounded size="small"/>
           <Card.Content>
-          <Image src={cv.avatarLink} circular rounded size="small"/>
             <Card.Header>
               {cv.candidate?.firstName + " " + cv.candidate?.lastName}
             </Card.Header>
@@ -188,9 +188,9 @@ export default function CandidateCvDetailList() {
 
           <Table.Body>
             {cv.languages?.map((language) => (
-              <Table.Row key={language.id}>
-                <Table.Cell>{language.languageName}</Table.Cell>
-                <Table.Cell>{language.languageLevel}</Table.Cell>
+              <Table.Row key={language.language?.id}>
+                <Table.Cell>{language.language?.languageName}</Table.Cell>
+                <Table.Cell>{language.language?.languageLevel}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
@@ -208,8 +208,8 @@ export default function CandidateCvDetailList() {
 
           <Table.Body>
             {cv.talents?.map((talent) => (
-              <Table.Row key={talent.id}>
-                <Table.Cell>{talent.name}</Table.Cell>
+              <Table.Row key={talent.talent?.id}>
+                <Table.Cell>{talent.talent?.talentName}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
