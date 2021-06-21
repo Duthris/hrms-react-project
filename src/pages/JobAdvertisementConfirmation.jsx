@@ -69,8 +69,8 @@ export default function JobAdvertisementConfirm() {
               <Table.Cell>{job.employer.companyName}</Table.Cell>
               <Table.Cell>{job.jobPosition.positionName}</Table.Cell>
               <Table.Cell>{job.city.cityName}</Table.Cell>
-              <Table.Cell>{job.minSalary}₺</Table.Cell>
-              <Table.Cell>{job.maxSalary}₺</Table.Cell>
+              <Table.Cell>{job.minSalary} ₺</Table.Cell>
+              <Table.Cell>{job.maxSalary} ₺</Table.Cell>
               <Table.Cell>{job.quota}</Table.Cell>
               <Table.Cell>{job.workingTime.workingTime}</Table.Cell>
               <Table.Cell>{job.workingMethod.workingMethod}</Table.Cell>
