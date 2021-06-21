@@ -23,6 +23,8 @@ export default function EmployerDetail() {
       .then((result) => setJobs(result.data.data));
   },[id]);
 
+  console.log(jobs)
+
   return (
     <div>
       <Table celled>
