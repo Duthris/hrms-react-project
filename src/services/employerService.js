@@ -8,4 +8,8 @@ export default class EmployerService{
     getById(id){
         return axios.get("http://localhost:8080/api/employers/getById?id="+id)
     }
+
+    register(employer){
+        return axios.post("http://localhost:8080/api/employers/register", employer)
+    }
 }

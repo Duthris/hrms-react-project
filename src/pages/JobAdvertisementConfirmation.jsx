@@ -76,7 +76,7 @@ export default function JobAdvertisementConfirm() {
               <Table.Cell>{job.workingMethod.workingMethod}</Table.Cell>
               <Table.Cell>
                 {(
-                  (new Date(job.expirationDate.slice(0, 10)).getTime() -
+                  (new Date(job.expirationDate).getTime() -
                     new Date(Date.now()).getTime()) /
                   86400000
                 )

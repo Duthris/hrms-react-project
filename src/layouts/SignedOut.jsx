@@ -1,13 +1,14 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
 
 export default function SignedOut({ signIn }) {
   return (
     <div>
       <Button.Group size="large">
-        <Button animated color="teal" size="large">
+        <Button as={NavLink} to="/register" animated color="teal" size="large">
           <Button.Content size="large" visible>
-            Sign Up
+            Register
           </Button.Content>
           <Button.Content size="large" hidden>
             <Icon name="signup" />
@@ -17,7 +18,7 @@ export default function SignedOut({ signIn }) {
         <Button animated primary positive size="large" onClick={signIn}>
           {" "}
           <Button.Content size="large" visible>
-            Sign In
+            Login
           </Button.Content>
           <Button.Content size="large" hidden>
             <Icon name="sign in alternate" />
