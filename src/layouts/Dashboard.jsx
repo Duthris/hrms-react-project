@@ -15,6 +15,7 @@ import JobAdvertisementConfirm from "../pages/JobAdvertisementConfirmation";
 import JobAdvertisementDetails from "../pages/JobAdvertisementDetails";
 import EmployerDetailList from "../pages/EmployerDetailList";
 import Register from "./Register";
+import Login from "./Login";
 
 export default function Dashboard() {
   return (
@@ -37,6 +38,7 @@ export default function Dashboard() {
             <Route exact path="/jobAdvertisementConfirm" component={JobAdvertisementConfirm} />
             <Route exact path="/jobAdvertisements/:id" component={JobAdvertisementDetails} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

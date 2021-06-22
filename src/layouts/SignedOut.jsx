@@ -15,7 +15,7 @@ export default function SignedOut({ signIn }) {
           </Button.Content>
         </Button>
         <div className="or" data-text="or"></div>
-        <Button animated primary positive size="large" onClick={signIn}>
+        <Button as={NavLink} to="/login" animated primary positive size="large">
           {" "}
           <Button.Content size="large" visible>
             Login
