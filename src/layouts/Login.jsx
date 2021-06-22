@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Grid, Header, Segment, Form, Button, Message } from "semantic-ui-react"
 import { Link } from "react-router-dom"
 
@@ -38,7 +37,7 @@ export default function Login() {
               </Button>
             </Segment>
           </Form>
-          <Message>
+          <Message color="violet">
             <h4>Are you a candidate or employer? <Link style={{ color: "#009C95" }} to="/register">Register now!</Link></h4> 
           </Message>
         </Grid.Column>
