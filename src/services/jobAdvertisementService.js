@@ -33,7 +33,7 @@ export default class JobAdvertisementService{
         return axios.get("http://localhost:8080/api/jobAdvertisements/getById?id="+id)
     }
 
-    delete(jobAdvertisement){
-        return axios.post("http://localhost:8080/api/jobAdvertisements/delete",jobAdvertisement)
+    delete(id){
+        return axios.post("http://localhost:8080/api/jobAdvertisements/delete?id="+id)
     }
 }

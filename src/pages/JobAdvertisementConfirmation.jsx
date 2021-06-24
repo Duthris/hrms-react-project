@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JobAdvertisementService from "../services/jobAdvertisementService";
 import { Table, Header, Icon, Button } from "semantic-ui-react";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 export default function JobAdvertisementConfirm() {
   let jobAdvertisementService = new JobAdvertisementService();
@@ -15,29 +15,42 @@ export default function JobAdvertisementConfirm() {
   });
 
   const activate = (id) => {
-    jobAdvertisementService.activate(id, true).then(swal({
+    jobAdvertisementService.activate(id, true).then(
+      swal({
         title: "Succeed!",
         text: "Job Advertisement is confirmed!",
         icon: "success",
-        button: "Ok"
-      }).then(function(){window.location.reload()}));
-};
-
-  const deleteJobAdvertisement = (jobAdvertisement) => {
-    jobAdvertisementService
-      .delete(jobAdvertisement)
-      .then(swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this job advertisement!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
+        button: "Ok",
+      }).then(function () {
+        window.location.reload();
       })
-      .then((willDelete) => {
-           if (willDelete) { 
-               swal("Succeed! Job Advertisement has been deleted!", { icon: "success" })
-               .then(function(){window.location.reload()});
-        }}));
+    );
+  };
+
+  const deleteJobAdvertisement = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this job advertisement!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        jobAdvertisementService.delete(id).then(
+          swal("Succeed! Job Advertisement has been deleted!", {
+            icon: "success",
+          }).then(function () {
+            window.location.reload();
+          })
+        );
+      } else {
+        swal(
+          "Cancelled",
+          "Don't worry the Job Advertisement is still there :)",
+          "error"
+        );
+      }
+    });
   };
 
   return (
@@ -88,8 +101,22 @@ export default function JobAdvertisementConfirm() {
                 {job.activationStatus === true ? "Active" : "Passive"}
               </Table.Cell>
               <Table.Cell>
-                <Button fluid size="tiny" positive onClick={(e) => activate(job.id)}><Icon name="check" /> Confirm</Button>
-                <Button fluid size="tiny" negative onClick={(e) => deleteJobAdvertisement(job.id)}><Icon name="trash alternate" /> Delete</Button>
+                <Button
+                  fluid
+                  size="tiny"
+                  positive
+                  onClick={(e) => activate(job.id)}
+                >
+                  <Icon name="check" /> Confirm
+                </Button>
+                <Button
+                  fluid
+                  size="tiny"
+                  negative
+                  onClick={(e) => deleteJobAdvertisement(job.id)}
+                >
+                  <Icon name="trash alternate" /> Delete
+                </Button>
               </Table.Cell>
             </Table.Row>
           ))}
