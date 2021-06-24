@@ -14,6 +14,10 @@ export default function CandidateCvList() {
 
   return (
     <div>
+       <Header as="h2">
+        <Icon name="file alternate" />
+        <Header.Content>Candidate Resumes</Header.Content>
+      </Header>
       <Table celled color={"violet"}>
         <Table.Header>
           <Table.Row>

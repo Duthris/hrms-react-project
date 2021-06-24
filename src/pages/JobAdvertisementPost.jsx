@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Dropdown, Input, TextArea, Card, Form, Grid } from "semantic-ui-react";
+import { Button, Dropdown, Input, TextArea, Card, Form, Grid, Header, Icon } from "semantic-ui-react";
 import CityService from "../services/cityService";
 import JobPositionService from "../services/jobPositionService";
 import WorkingTimeService from "../services/workingTimeService";
@@ -98,8 +98,12 @@ export default function JobAdCreate() {
 
   return (
     <div>
-      <Card color="violet" fluid>
-      <Card.Content header='Add Job Advertisement' />
+       <Header style={{ marginTop: "2em" }} as="h2">
+        <Icon name="user plus" />
+        <Header.Content>Add Job Advertisement</Header.Content>
+      </Header>  
+
+      <Card style={{ marginLeft: "-3em" }} color="violet" fluid>
       <Card.Content>
       <Form color="violet" onSubmit={formik.handleSubmit}>
         <Form.Field style={{marginBottom: "1rem"}}>

@@ -9,7 +9,7 @@ export default function Login() {
         textAlign="center"
         verticalAlign="middle"
       >
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ marginRight: "8em", marginTop: "13em" ,maxWidth: 450 }}>
           <Header as="h1" color="violet" textAlign="center">
             Login
           </Header>

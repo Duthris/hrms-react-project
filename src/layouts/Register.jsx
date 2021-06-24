@@ -28,7 +28,7 @@ export default function Register() {
         textAlign="center"
         verticalAlign="middle"
       >
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ marginTop: "2em", marginRight: "8em" ,maxWidth: 450 }}>
           <Header as="h1" color="violet" textAlign="center">
             Register
           </Header>
