@@ -1,7 +1,5 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-
-import SideBar from "./SideBar";
 import { Route } from "react-router";
 import JobAdvertisementList from "../pages/JobAdvertisementList";
 import EmployeeList from "../pages/EmployeeList";
@@ -16,6 +14,7 @@ import JobAdvertisementDetails from "../pages/JobAdvertisementDetails";
 import EmployerDetailList from "../pages/EmployerDetailList";
 import Register from "./Register";
 import Login from "./Login";
+import Home from "./Home";
 
 export default function Dashboard() {
   return (
@@ -23,9 +22,10 @@ export default function Dashboard() {
       <Grid>
         <Grid.Row>
           <Grid.Column width={3}>
-            <SideBar />
+            
           </Grid.Column>
           <Grid.Column width={13}>
+            <Route exact path="/" component={Home} />
             <Route exact path="/jobAdvertisements" component={JobAdvertisementList} />
             <Route exact path="/employees" component={EmployeeList} />
             <Route exact path="/employers" component={EmployerList} />
