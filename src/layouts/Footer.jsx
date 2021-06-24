@@ -9,7 +9,7 @@ import {
 } from "semantic-ui-react";
 export default function Footer() {
   return (
-    <div className={"Footer"}>
+    <div>
       <Segment
         color="violet"
         inverted
@@ -33,8 +33,7 @@ export default function Footer() {
                 </List>
               </Grid.Column>
               <Grid.Column width={13}>
-                <div className="descriptionPosition">
-                  <Header as="h2">
+                  <Header style={{ marginTop: "-1.2em" }} as="h2">
                     <Container>
                       <Icon name="users" color="olive" size="big" />
                     </Container>
@@ -48,7 +47,6 @@ export default function Footer() {
                     © 2021 Human Resources Management System - All rights
                     reserved.
                   </Container>
-                </div>
               </Grid.Column>
             </Grid.Row>
           </Grid>
