@@ -46,18 +46,27 @@ export default function CandidateRegister() {
     onSubmit: (values) => {
       employerService
         .register(values)
-        .then((result) => console.log(result))
-        .then(
-          swal({
-            title: "Succeed!",
-            text: "Successfully Registered! Please check your e-mail to verify your account!",
-            icon: "success",
-            button: "Ok",
-          }).then(function () {
-            window.location.reload();
-          })
-        );
-    },
+        .then((result) =>  {
+          if (result.data.success === true) {
+            swal({
+              title: "Succeed!",
+              text: "Successfully Registered! Please check your e-mail to verify your account!",
+              icon: "success",
+              button: "Ok",
+            }).then(function () {
+              window.location.reload();
+            })
+          }
+          else {
+            swal({
+              title: "Registration is Unsuccessful!",
+              text: result.data.message,
+              icon: "error",
+              button: "Ok",
+            })
+          }
+        }
+        )},
   });
 
   return (
@@ -73,7 +82,6 @@ export default function CandidateRegister() {
             icon="building"
             iconPosition="left"
             placeholder="Company Name"
-            required
           />
           {formik.errors.companyName && formik.touched.companyName && (
             <div
@@ -93,7 +101,6 @@ export default function CandidateRegister() {
             icon="world"
             iconPosition="left"
             placeholder="Web Site"
-            required
           />
 
           {formik.errors.webSite && formik.touched.webSite && (
@@ -115,7 +122,6 @@ export default function CandidateRegister() {
             icon="phone"
             iconPosition="left"
             placeholder="Phone Number"
-            required
           />
 
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
@@ -137,7 +143,6 @@ export default function CandidateRegister() {
             iconPosition="left"
             placeholder="E-mail"
             type="email"
-            required
           />
 
           {formik.errors.email && formik.touched.email && (
@@ -159,7 +164,6 @@ export default function CandidateRegister() {
             iconPosition="left"
             placeholder="Password"
             type="password"
-            required
           />
 
           {formik.errors.password && formik.touched.password && (
@@ -180,7 +184,6 @@ export default function CandidateRegister() {
             iconPosition="left"
             placeholder="Confirm Password"
             type="password"
-            required
           />
 
           {formik.errors.passwordAgain && formik.touched.passwordAgain && (

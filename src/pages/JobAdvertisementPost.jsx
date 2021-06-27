@@ -45,13 +45,27 @@ export default function JobAdCreate() {
       values.maxSalary = parseInt(values.maxSalary);
       values.quota = parseInt(values.quota);
 
-      jobAdvertisementService.add(values).then((result) => console.log(result)).then(swal({
-        title: "Succeed!",
-        text: "Job Advertisement is added!",
-        icon: "success",
-        button: "Ok"
-      }).then(function(){window.location.reload()}));;
-    },
+      jobAdvertisementService.add(values).then((result) => {
+        if (result.data.success === true) {
+          swal({
+            title: "Succeed!",
+            text: "Job Advertisement is added!",
+            icon: "success",
+            button: "Ok",
+          }).then(function () {
+            window.location.reload();
+          })
+        }
+        else {
+          swal({
+            title: "Registration is Unsuccessful!",
+            text: result.data.message,
+            icon: "error",
+            button: "Ok",
+          })
+        }
+      }
+      )},
   });
 
   const [workingTimes, setWorkingTimes] = useState([]);

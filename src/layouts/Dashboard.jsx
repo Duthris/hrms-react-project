@@ -15,10 +15,12 @@ import EmployerDetailList from "../pages/EmployerDetailList";
 import Register from "./Register";
 import Login from "./Login";
 import Home from "./Home";
+import { ToastContainer } from "react-toastify";
 
 export default function Dashboard() {
   return (
     <div>
+      <ToastContainer position="bottom-right"/>
       <Grid>
         <Grid.Row>
           <Grid.Column width={3}>

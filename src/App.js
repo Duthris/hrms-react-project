@@ -14,10 +14,7 @@ function App() {
         <Dashboard />
       </Container>  
       <Footer/>
-    </div>
-
-    
-    
+    </div> 
   );
 }
 

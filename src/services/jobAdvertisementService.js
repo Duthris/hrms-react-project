@@ -36,4 +36,8 @@ export default class JobAdvertisementService{
     delete(id){
         return axios.post("http://localhost:8080/api/jobAdvertisements/delete?id="+id)
     }
+
+    getAllByFilteredAndPaged(pageNo, pageSize, filterOption) {
+        return axios.post(`http://localhost:8080/api/jobAdvertisements/getAllByFilteredAndPaged?pageNo=${pageNo}&pageSize=${pageSize}`, filterOption)
+    }
 }
