@@ -55,7 +55,6 @@ export default function JobAdvertisementList() {
       addToast(result.data.message, {
         appearance: result.data.success ? "success" : "error",
         autoDismiss: true,
-        placement: 'bottom-right',
       });
     });
   };
@@ -87,8 +86,9 @@ export default function JobAdvertisementList() {
             <Table.HeaderCell>Deadline</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell>Detail</Table.HeaderCell>
+            <Table.HeaderCell>Add to Favorites</Table.HeaderCell>
           </Table.Row>
-        </Table.Header>
+          </Table.Header>
 
         <Table.Body>
           {jobs?.map((job) => (

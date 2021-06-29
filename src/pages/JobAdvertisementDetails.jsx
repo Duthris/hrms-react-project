@@ -18,7 +18,7 @@ export default function JobAdvertisementDetails() {
     <div>
       <Card fluid color={"violet"}>
         <Card.Content header="Description" />
-        <Card.Content>{job.description}</Card.Content>
+        <Card.Content> <div dangerouslySetInnerHTML={{ __html: job.description}} /></Card.Content>
       </Card>
       <Grid centered stackable>
         <Grid.Row>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Label, Dropdown, Segment, Checkbox, Button } from 'semantic-ui-react'
 import CityService from '../../services/cityService';
 import JobPositionService from '../../services/jobPositionService'
-import WorkingMethodService from '../../services/workingMethodService';
+import WorkingMethodService from '../../services/workingTimeService';
 import WorkingTimeService from '../../services/workingTimeService';
 import "../../App.css";
 

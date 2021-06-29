@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Dropdown, Input, TextArea, Card, Form, Grid, Header, Icon } from "semantic-ui-react";
+import { Button, Dropdown, Input, TextArea, Card, Form, Grid, Header, Icon, Label } from "semantic-ui-react";
 import CityService from "../services/cityService";
 import JobPositionService from "../services/jobPositionService";
 import WorkingTimeService from "../services/workingTimeService";
-import WorkingMethodService from "../services/workingMethodService";
+import WorkingMethodService from "../services/workingTimeService";
 import JobAdvertisementService from "../services/jobAdvertisementService";
+import RichTextEditor from '../components/RichTextEditor/RichTextEditor';
 import swal from 'sweetalert';
 
 export default function JobAdCreate() {
@@ -108,6 +109,10 @@ export default function JobAdCreate() {
 
   const handleChangeSemantic = (value, fieldName) => {
     formik.setFieldValue(fieldName, value);
+  }
+
+  const handleRichTextEditorInput = (value) => {
+    formik.setFieldValue("description", value)
   }
 
   return (
@@ -284,15 +289,12 @@ export default function JobAdCreate() {
               </Form.Field>
 
               <Form.Field>
-                <TextArea
-                  placeholder="Description"
-                  style={{ minHeight: 150 }}
-                  error={Boolean(formik.errors.description).toString()}
-                  value={formik.values.description}
-                  name="description"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
+                <Label className="mt-3">
+                  Description
+                </Label>
+              <RichTextEditor
+            textValue={handleRichTextEditorInput}
+          />
                 {formik.errors.description && formik.touched.description && (
                   <div className={"ui pointing red basic label"}>
                     {formik.errors.description}
