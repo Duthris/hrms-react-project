@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Label, Dropdown, Segment, Checkbox, Button } from 'semantic-ui-react'
 import CityService from '../../services/cityService';
 import JobPositionService from '../../services/jobPositionService'
-import WorkingMethodService from '../../services/workingTimeService';
+import WorkingMethodService from '../../services/workingMethodService';
 import WorkingTimeService from '../../services/workingTimeService';
 import "../../App.css";
 
@@ -45,7 +45,7 @@ export default function JobAdvertisementFilter({ clickEvent }) {
     }
 
     const [workingMethodsIndexes, setWorkingMethodsIndexes] = useState([])
-    const handleChangeWorkStyle = (e, { value, checked }) => {
+    const handleChangeWorkingMethod = (e, { value, checked }) => {
         if (checked)
             workingMethodsIndexes.push(value)
         else {
@@ -57,7 +57,7 @@ export default function JobAdvertisementFilter({ clickEvent }) {
     }
 
     const [workingTimeIndexes, setWorkingTimeIndexes] = useState([])
-    const handleChangeWorkTimeStyle = (e, { value, checked }) => {
+    const handleChangeWorkingTime = (e, { value, checked }) => {
 
         if (checked)
             workingTimeIndexes.push(value)
@@ -108,7 +108,7 @@ export default function JobAdvertisementFilter({ clickEvent }) {
                         key={workingMethod.id}
                             label={workingMethod.workingMethod}
                             className="mt-4 d-block"
-                            onChange={handleChangeWorkStyle}
+                            onChange={handleChangeWorkingMethod}
                             value={workingMethod.id}
                         />
                     ))
@@ -122,7 +122,7 @@ export default function JobAdvertisementFilter({ clickEvent }) {
                         key={workingTime.id}
                             label={workingTime.workingTime}
                             className="mt-4 d-block"
-                            onChange={handleChangeWorkTimeStyle}
+                            onChange={handleChangeWorkingTime}
                             value={workingTime.id}
                         />
                     ))
