@@ -33,6 +33,7 @@ export default function Navi() {
   const options3 = [
     { key: 1, text: "Confirm Job Advertisement", icon: "clipboard check", as: NavLink, to: "/jobAdvertisementConfirm"},
     { key: 2, text: "Personels", icon: "user circle", as: NavLink, to: "/employees"},
+    { key: 3, text: "Personel Profile Update", icon: "edit", as: NavLink, to: "/employeeUpdate"},
   ]
 
   return (
@@ -52,7 +53,7 @@ export default function Navi() {
           style={{ margin: "0.5em" }} item direction="left" options={options} />
 
           <Dropdown trigger={<span><Icon name='user'/> Candidates</span>}  
-          style={{ margin: "0.5em" }} item direction="left" options={options2} />
+          style={{ margin: "0.5em", marginLeft: "-0.6em"}} item direction="left" options={options2} />
 
           <Menu.Item>
             <Input className='icon' icon='search' placeholder='Search...' />
@@ -60,6 +61,7 @@ export default function Navi() {
 
           <Menu.Item position='right'>
             <Input
+              style={{ marginLeft: "-0.5em"}}
               action={{ type: 'submit', content: 'Go' }}
               placeholder='Navigate to...'
             />

@@ -12,4 +12,8 @@ export default class EmployeeService{
     update(employee){
         return axios.post("http://localhost:8080/api/employees/update", employee)
     }
+
+    getById(id){
+        return axios.get("http://localhost:8080/api/employees/getById?id="+id)
+    }
 }

@@ -195,7 +195,7 @@ export default function CandidateRegister() {
             </div>
           )}
           <br />
-          <Button animated type="submit" color="violet" fluid size="large">
+          <Button animated type="submit" color="violet" fluid size="medium">
             Register
           </Button>
         </Form>

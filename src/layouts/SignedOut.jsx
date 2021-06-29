@@ -5,8 +5,8 @@ import { Button, Icon } from "semantic-ui-react";
 export default function SignedOut({ signIn }) {
   return (
     <div>
-      <Button.Group size="large">
-        <Button as={NavLink} to="/register" animated color="teal" size="large">
+      <Button.Group size="medium">
+        <Button as={NavLink} to="/register" animated color="teal" size="medium">
           <Button.Content size="large" visible>
             Register
           </Button.Content>
@@ -15,7 +15,7 @@ export default function SignedOut({ signIn }) {
           </Button.Content>
         </Button>
         <div className="or" data-text="or"></div>
-        <Button as={NavLink} to="/login" animated primary positive size="large">
+        <Button as={NavLink} to="/login" animated primary positive size="medium">
           {" "}
           <Button.Content size="large" visible>
             Login
