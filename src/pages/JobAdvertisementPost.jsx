@@ -5,7 +5,7 @@ import { Button, Dropdown, Input, TextArea, Card, Form, Grid, Header, Icon, Labe
 import CityService from "../services/cityService";
 import JobPositionService from "../services/jobPositionService";
 import WorkingTimeService from "../services/workingTimeService";
-import WorkingMethodService from "../services/workingTimeService";
+import WorkingMethodService from "../services/workingMethodService";
 import JobAdvertisementService from "../services/jobAdvertisementService";
 import RichTextEditor from '../components/RichTextEditor/RichTextEditor';
 import swal from 'sweetalert';
