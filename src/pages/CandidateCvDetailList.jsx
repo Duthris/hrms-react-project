@@ -120,7 +120,7 @@ export default function CandidateCvDetailList() {
       </Card.Group>
       <Card color="violet" fluid>
         <Card.Content header="Cover Letter" />
-        <Card.Content description={cv.coverLetter} />
+        <Card.Content> <div dangerouslySetInnerHTML={{ __html: cv.coverLetter}} /></Card.Content>
       </Card>
 
       <Card color="violet" fluid>
@@ -170,46 +170,6 @@ export default function CandidateCvDetailList() {
                 <Table.Cell>{new Date(jobExperience.startingDate).toLocaleDateString()}</Table.Cell>
                 <Table.Cell>{jobExperience.endDate === null ? "Continue" : 
                 new Date(jobExperience.endDate).toLocaleDateString()}</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </Card>
-
-      <Card color="violet" fluid>
-        <Card.Content header="Languages" />
-        <Table celled color={"violet"}>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Language Name</Table.HeaderCell>
-              <Table.HeaderCell>Level 1-5</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            {cv.languages?.map((language) => (
-              <Table.Row key={language.language?.id}>
-                <Table.Cell>{language.language?.languageName}</Table.Cell>
-                <Table.Cell>{language.language?.languageLevel}</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </Card>
-
-      <Card color="violet" fluid>
-        <Card.Content header="Talents" />
-        <Table celled color={"violet"}>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Talent Name</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            {cv.talents?.map((talent) => (
-              <Table.Row key={talent.talent?.id}>
-                <Table.Cell>{talent.talent?.talentName}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>

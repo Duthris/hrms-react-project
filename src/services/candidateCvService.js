@@ -25,4 +25,24 @@ export default class CandidateCvService{
         return axios.get("http://localhost:8080/api/candidatesCvs/getById?id="+id)
     }
 
+    updateGithub(githubLink, cvId){
+        return axios.put(`http://localhost:8080/api/candidatesCvs/updateGithub?cvId=${cvId}&githubLink=${githubLink}`)
+    }
+
+    deleteGithub(cvId){
+        return axios.put("http://localhost:8080/api/candidatesCvs/deleteGithub?cvId="+cvId)
+    }
+
+    updateLinkedin(linkedinLink, cvId){
+        return axios.put(`http://localhost:8080/api/candidatesCvs/updateLinkedin?cvId=${cvId}&linkedinLink=${linkedinLink}`)
+    }
+
+    deleteLinkedin(cvId){
+        return axios.put("http://localhost:8080/api/candidatesCvs/deleteLinkedin?cvId="+cvId)
+    }
+
+    updateCoverLetter(coverLetter, cvId){
+        return axios.put(`http://localhost:8080/api/candidatesCvs/updateCoverLetter?coverLetter=${coverLetter}&cvId=${cvId}`)
+    }
+
 }

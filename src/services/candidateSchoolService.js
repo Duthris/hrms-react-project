@@ -21,4 +21,8 @@ export default class candidateSchoolService{
         return axios.post("http://localhost:8080/api/candidatesSchools/add",data)
     }
 
+    delete(id){
+        return axios.post("http://localhost:8080/api/candidatesSchools/delete?id="+id)
+    }
+
 }

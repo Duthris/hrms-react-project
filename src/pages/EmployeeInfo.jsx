@@ -14,13 +14,19 @@ import { useEffect } from "react";
 import EmployeeService from "../services/employeeService";
 import swal from "sweetalert";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function EmployeeInfo({ employee }) {
   const [isEdit, setIsEdit] = useState(false);
 
+  const history = useHistory();
+
   const handleEditClick = () => {
     setIsEdit(!isEdit);
   };
+
+  const {authItem} = useSelector(state => state.auth)
 
   useEffect(() => {}, [isEdit]);
 
@@ -51,7 +57,7 @@ export default function EmployeeInfo({ employee }) {
     },
     validationSchema: EmployeeInfosUpdationSchema,
     onSubmit: (values) => {
-      values.id = 1;
+      values.id = authItem[0].user.id;
 
       employeeService.update(values).then((result) => {
         console.log({ employee });
@@ -62,7 +68,8 @@ export default function EmployeeInfo({ employee }) {
             icon: "success",
             button: "Ok",
           }).then(function () {
-            window.location.reload();
+            history.push("/x");
+            history.push("/employeeUpdate");
           });
         } else {
           swal({

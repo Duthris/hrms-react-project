@@ -8,4 +8,8 @@ export default class CandidateService{
     register(candidate) {
         return axios.post("http://localhost:8080/api/candidates/register", candidate)
     }
+
+    update(candidate) {
+        return axios.post("http://localhost:8080/api/candidates/update", candidate)
+    }
 }
