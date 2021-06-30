@@ -4,9 +4,12 @@ import SignedIn from "./SignedIn";
 import SignedOut from "./SignedOut";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function Navi() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const {authItem} = useSelector(state => state.auth)
 
   const history = useHistory();
 
@@ -38,7 +41,7 @@ export default function Navi() {
 
   return (
     <div>
-      <Menu inverted fixed="top" size="large" color="violet">
+      <Menu stackable inverted fixed="top" size="large" color="violet">
      
           <Menu.Item name="user md" >
             <Icon name="user md" size="large" />
@@ -67,7 +70,7 @@ export default function Navi() {
             />
           </Menu.Item>
 
-          <Menu.Item
+         <Menu.Item
             position="right"
             as={NavLink}
             to="/jobAdvertisementPost"
@@ -78,11 +81,7 @@ export default function Navi() {
           </Menu.Item>
           
           <Menu.Menu style={{ margin: "0.5em" }}>
-            {isAuthenticated ? (
-              <SignedIn signOut={handleSignOut} />
-            ) : (
-              <SignedOut signIn={handleSignIn} />
-            )}
+          {authItem[0].loggedIn?<SignedIn/>:<SignedOut/>}
           </Menu.Menu>
 
           <Dropdown trigger={<span><Icon name='key'/> Admin</span>}  style={{ margin: "0.5em" }} item direction="left" options={options3} />

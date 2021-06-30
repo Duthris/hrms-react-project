@@ -17,12 +17,13 @@ import Login from "./Login";
 import Home from "./Home";
 import { ToastContainer } from "react-toastify";
 import EmployeeDetailList from "../pages/EmployeeDetailList"
+import CandidateCvDetail from "../pages/CandidateCvDetail"
 
 export default function Dashboard() {
   return (
     <div>
       <ToastContainer position="bottom-right"/>
-      <Grid>
+      <Grid stackable>
         <Grid.Row>
           <Grid.Column width={3}>
             
@@ -43,6 +44,7 @@ export default function Dashboard() {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/employeeUpdate" component={EmployeeDetailList} />
+            <Route exact path="/candidateCvUpdate" component={CandidateCvDetail} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
