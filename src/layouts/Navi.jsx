@@ -85,7 +85,7 @@ export default function Navi() {
           </Menu.Menu>
 
           <Dropdown trigger={<span><Icon name='key'/> Admin</span>}  style={{ margin: "0.5em" }} item direction="left" options={options3} />
-    
+  
       </Menu>
     </div>
   );

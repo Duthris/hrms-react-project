@@ -1,5 +1,5 @@
 import React from 'react'
-import CandidateCvService from '../../services/candidateService'
+import CandidateCvService from '../../services/candidateCvService'
 import * as Yup from "yup";
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';

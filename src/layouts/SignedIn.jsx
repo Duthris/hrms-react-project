@@ -1,8 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Dropdown, Menu, Icon, Image } from 'semantic-ui-react'
 import { userLogout } from "../store/actions/authActions"
+import UpdateEmployer from '../utilities/EditPages/UpdateEmployer'
+import Popup from "reactjs-popup";
 
 export default function SingedIn() {
 
@@ -16,13 +18,6 @@ export default function SingedIn() {
         history.push("/")
     }
 
-    let dropItem="";
-    if(authItem[0].user.userType===1){
-        dropItem="Update the Cv";
-    }else if(authItem[0].user.userType===2){
-        dropItem="Update the Company Infos"
-    }
-
     return (
         <div>
             <Menu.Item>
@@ -33,7 +28,11 @@ export default function SingedIn() {
           />
                 <Dropdown pointing="top right" text={authItem[0].user.name}>
                     <Dropdown.Menu>
-                        <Dropdown.Item><Icon name='cloud upload' /> {dropItem}</Dropdown.Item>
+                    {authItem[0].user.userType===1 &&<Dropdown.Item as={Link} to={`/cvs/${authItem[0].user.id}`}>
+                        <Icon name='cloud upload' />Cv ni Güncelle</Dropdown.Item>}
+
+                        {authItem[0].user.userType===2 &&<Dropdown.Item>
+                            <Popup trigger={<p><i className="cloud upload icon"></i>Şirket bilgilerini güncelle</p>} modal><UpdateEmployer/></Popup></Dropdown.Item>}
                         <Dropdown.Item onClick={()=>handleLogout(authItem[0].user)}><Icon name='sign-out' /> Çıkış yap</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
