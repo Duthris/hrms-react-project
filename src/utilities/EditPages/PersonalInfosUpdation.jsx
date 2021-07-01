@@ -4,17 +4,28 @@ import * as Yup from "yup";
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
-import { Button, Form } from "semantic-ui-react";
+import CandidateCvService from '../../services/candidateCvService';
+import { Button, Form, Table, Header, Card, Image } from "semantic-ui-react";
 import swal from "sweetalert";
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function UpdatePersonalInfos() {
+
+  const [cv, setCv] = useState({});
+
+  useEffect(() => {
+    let candidateCvService = new CandidateCvService();
+    candidateCvService
+      .getById(1)
+      .then((result) => setCv(result.data.data));
+  }, []);
 
     let candidateService = new CandidateService();
     const updatePersonalInfosSchema = Yup.object().shape({
         firstName: Yup.string().min(1,"First name cannot be less than 1 character to edit!").nullable(),
         lastName: Yup.string().min(1,"Last name cannot be less than 1 character to edit!").nullable(),
         birthyear: Yup.string().min(4, "Birth Year must be 4 character to edit!").nullable(),
-        email: Yup.string().min(1, "E-mail cannot be less than 1 character to edit!").nullable().email("E-mail must be in ex@ex.com format!"),
     })
 
     const {authItem} = useSelector(state => state.auth)
@@ -26,7 +37,6 @@ export default function UpdatePersonalInfos() {
             firstName: null,
             lastName: null,
             birthYear: null,
-            email: null,
             id: null,
         },
         validationSchema: updatePersonalInfosSchema,
@@ -57,6 +67,50 @@ export default function UpdatePersonalInfos() {
 
     return (
         <div>
+          <Card color="violet" fluid>
+          <Card.Content header="Personal Infos" />
+            <Card.Description>
+              <Table celled color={"violet"}>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>Candidate</Table.HeaderCell>
+                    <Table.HeaderCell>Infos</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell width="6">
+                      <Header as="h4" image>
+                        <Header.Content>First Name</Header.Content>
+                      </Header>
+                    </Table.Cell>
+                    <Table.Cell width="7">{cv.candidate?.firstName}</Table.Cell>
+                  </Table.Row>
+
+                  <Table.Row>
+                    <Table.Cell>
+                      <Header as="h4" image>
+                        <Header.Content>Last Name</Header.Content>
+                      </Header>
+                    </Table.Cell>
+                    <Table.Cell>{cv.candidate?.lastName}</Table.Cell>
+                  </Table.Row>
+
+                  <Table.Row>
+                    <Table.Cell>
+                      <Header as="h4" image>
+                        <Header.Content>Birth Year</Header.Content>
+                      </Header>
+                    </Table.Cell>
+                    <Table.Cell>{cv.candidate?.birthYear}</Table.Cell>
+                  </Table.Row>
+
+                  </Table.Body>
+                  </Table>
+                  </Card.Description>
+                  </Card>
+
             <Form size="large" onSubmit={formik.handleSubmit}>
                 <label><b>First Name</b></label>
                 <Form.Input
@@ -112,24 +166,6 @@ export default function UpdatePersonalInfos() {
                 )
               } 
 
-
-              <label label><b>E-mail</b></label>
-                <Form.Input
-                    fluid
-                    placeholder="E-mail"
-                    type="text"
-                    value={formik.values.email}
-                    name="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                />
-                {
-                formik.errors.email && formik.touched.email && (
-                  <div className={"ui pointing red basic label"}>
-                    {formik.errors.email}
-                  </div>
-                )
-              } 
               <Button color="violet" size="large" type="submit">Update</Button>
             </Form>
         </div>

@@ -12,4 +12,8 @@ export default class EmployerService{
     register(employer){
         return axios.post("http://localhost:8080/api/employers/register", employer)
     }
+
+    update(employer){
+        return axios.post("http://localhost:8080/api/employers/update", employer)
+    }
 }

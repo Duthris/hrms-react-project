@@ -20,7 +20,7 @@ export default function UpdateSchools() {
     candidateSchoolService.getByCandidateCvId(1).then((result) => {
       setSchools(result.data.data);
     });
-  },[authItem]);
+  },[]);
 
   let schoolAddSchema = Yup.object().shape({
     schoolName: Yup.string().required("School name must be filled!").min(1, "School name cannot be less than 1 character to add"),
@@ -151,6 +151,13 @@ export default function UpdateSchools() {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
+                        {
+                formik.errors.schoolName && formik.touched.schoolName && (
+                  <div className={"ui pointing red basic label"}>
+                    {formik.errors.schoolName}
+                  </div>
+                )
+              }
                         <label><b>Starting Date</b></label>
                         <Form.Input
                             fluid
@@ -160,6 +167,14 @@ export default function UpdateSchools() {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
+
+{
+                formik.errors.startingDate && formik.touched.startingDate && (
+                  <div className={"ui pointing red basic label"}>
+                    {formik.errors.startingDate}
+                  </div>
+                )
+              }
                     </Grid.Column>
                     <Grid.Column width={8}>
                     <label><b>Department</b></label>
@@ -172,6 +187,13 @@ export default function UpdateSchools() {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
+                        {
+                formik.errors.department && formik.touched.department && (
+                  <div className={"ui pointing red basic label"}>
+                    {formik.errors.department}
+                  </div>
+                )
+              }
                     <label><b>Graduation Date</b></label>
                         <Form.Input
                             fluid
@@ -181,8 +203,15 @@ export default function UpdateSchools() {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
+                        {
+                formik.errors.graduationDate && formik.touched.graduationDate && (
+                  <div className={"ui pointing red basic label"}>
+                    {formik.errors.graduationDate}
+                  </div>
+                )
+              }
 
-                    <label><b>Graduation Status</b></label>
+                    <label><b>Is Graduated?</b></label>
                         <Form.Input
                             fluid
                             type="checkbox"
@@ -190,7 +219,14 @@ export default function UpdateSchools() {
                             value={formik.values.isGraduated}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                        />              
+                        />     
+                        {
+                formik.errors.isGraduated && formik.touched.isGraduated && (
+                  <div className={"ui pointing red basic label"}>
+                    {formik.errors.isGraduated}
+                  </div>
+                )
+              }         
                     </Grid.Column>
                 </Grid>
                 <div style={{marginTop:"1em"}}>

@@ -9,9 +9,12 @@ export default class CandidateLanguageService{
         return axios.get("http://localhost:8080/api/candidatesLanguages/getByCandidateCvId?id="+id)
     }
 
-    addLanguageToCv(id,data){
-        return axios.post("http://localhost:8080/api/candidatesLanguages/addLanguageToCv",id,data)
+    addLanguageToCv(data,id){
+        return axios.post("http://localhost:8080/api/candidatesLanguages/addLanguageToCv?candidateId="+id,data)
     }
 
+    deleteFromCv(id){
+        return axios.post("http://localhost:8080/api/candidatesLanguages/delete?languageId="+id)
+    }
 
 }

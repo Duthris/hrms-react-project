@@ -24,6 +24,9 @@ import CoverLetterUpdation from "../utilities/EditPages/CoverLetterUpdation";
 import UpdateSchools from "../utilities/EditPages/UpdateSchools";
 import { useHistory } from "react-router-dom";
 import "reactjs-popup/dist/index.css";
+import AddLanguageToCv from "../utilities/EditPages/AddLanguageToCv";
+import UpdateTalents from "../utilities/EditPages/UpdateTalents";
+import UpdateJobExperiences from "../utilities/EditPages/UpdateJobExperiences";
 
 export default function CandidateCvInfo({ cv }) {
   const history = useHistory();
@@ -155,7 +158,10 @@ export default function CandidateCvInfo({ cv }) {
                               <Button secondary>
                                 <Icon name="github" /> Github
                               </Button>
-                              <Popup
+                            </Segment>
+                          </a>
+
+                          <Popup
                             trigger={
                               <button
                                 style={{ marginLeft: "1em" }}
@@ -178,9 +184,6 @@ export default function CandidateCvInfo({ cv }) {
                           >
                             <Icon name="trash alternate" /> Delete
                           </Button>
-                            </Segment>
-                          </a>
-                   
                         </Header.Content>
                       </Header>
                     </Table.Cell>
@@ -196,7 +199,9 @@ export default function CandidateCvInfo({ cv }) {
                               <Button color="linkedin">
                                 <Icon name="linkedin" /> Linked.in
                               </Button>
-                              <Popup
+                            </Segment>
+                          </a>
+                          <Popup
                             trigger={
                               <button
                                 style={{ marginLeft: "1em" }}
@@ -212,15 +217,13 @@ export default function CandidateCvInfo({ cv }) {
                           </Popup>
 
                           <Button
-                            style={{ marginLeft: "1em"}}
+                            style={{ marginLeft: "1em" }}
                             size="small"
                             negative
                             onClick={(e) => deleteLinkedin(cv.id)}
                           >
                             <Icon name="trash alternate" /> Delete
                           </Button>
-                            </Segment>
-                          </a>
                         </Header.Content>
                       </Header>
                     </Table.Cell>
@@ -228,19 +231,19 @@ export default function CandidateCvInfo({ cv }) {
                 </Table.Body>
               </Table>
               <Popup
-                    trigger={
-                      <button
-                        style={{ marginLeft: "-1em", marginTop: "1em" }}
-                        className="btn btn-success px-3"
-                      >
-                        {" "}
-                        Edit Personal Infos
-                      </button>
-                    }
-                    modal
+                trigger={
+                  <button
+                    style={{ marginLeft: "-1em", marginTop: "1em" }}
+                    className="btn btn-success px-3"
                   >
-                    <PersonalInfosUpdation />
-                  </Popup>
+                    {" "}
+                    Edit Personal Infos
+                  </button>
+                }
+                modal
+              >
+                <PersonalInfosUpdation />
+              </Popup>
             </Card.Description>
           </Card.Content>
           <Card.Content extra></Card.Content>
@@ -248,21 +251,27 @@ export default function CandidateCvInfo({ cv }) {
       </Card.Group>
       <Card color="violet" fluid>
         <Card.Content header="Cover Letter" />
-        <Card.Content> <div dangerouslySetInnerHTML={{ __html: cv.coverLetter}} /></Card.Content>
-        <Card.Content> <Popup
-                    trigger={
-                      <button
-                        style={{ marginLeft: "-0.5em" }}
-                        className="btn btn-success px-3"
-                      >
-                        {" "}
-                        Edit Cover Letter
-                      </button>
-                    }
-                    modal
-                  >
-                    <CoverLetterUpdation />
-                  </Popup></Card.Content>
+        <Card.Content>
+          {" "}
+          <div dangerouslySetInnerHTML={{ __html: cv.coverLetter }} />
+        </Card.Content>
+        <Card.Content>
+          {" "}
+          <Popup
+            trigger={
+              <button
+                style={{ marginLeft: "-0.5em" }}
+                className="btn btn-success px-3"
+              >
+                {" "}
+                <i className="cloud upload icon"></i>Edit Cover Letter
+              </button>
+            }
+            modal
+          >
+            <CoverLetterUpdation />
+          </Popup>
+        </Card.Content>
       </Card>
 
       <Card color="violet" fluid>
@@ -294,20 +303,23 @@ export default function CandidateCvInfo({ cv }) {
             ))}
           </Table.Body>
         </Table>
-        <Card.Content>   <Popup
-                            trigger={
-                              <button
-                                style={{ marginLeft: "1em" }}
-                                className="btn btn-success px-3"
-                              >
-                                {" "}
-                                Edit Schools
-                              </button>
-                            }
-                            modal
-                          >
-                            <UpdateSchools />
-                          </Popup></Card.Content>
+        <Card.Content>
+          {" "}
+          <Popup
+            trigger={
+              <button
+                style={{ marginLeft: "-0.5em" }}
+                className="btn btn-success px-3"
+              >
+                {" "}
+                Edit Schools
+              </button>
+            }
+            modal
+          >
+            <UpdateSchools />
+          </Popup>
+        </Card.Content>
       </Card>
 
       <Card color="violet" fluid>
@@ -341,6 +353,23 @@ export default function CandidateCvInfo({ cv }) {
             ))}
           </Table.Body>
         </Table>
+        <Card.Content>
+          {" "}
+          <Popup
+            trigger={
+              <button
+                style={{ marginLeft: "-0.5em" }}
+                className="btn btn-success px-3"
+              >
+                {" "}
+                Edit Job Experiences
+              </button>
+            }
+            modal
+          >
+            <UpdateJobExperiences />
+          </Popup>
+        </Card.Content>
       </Card>
 
       <Card color="violet" fluid>
@@ -356,12 +385,31 @@ export default function CandidateCvInfo({ cv }) {
           <Table.Body>
             {cv.languages?.map((language) => (
               <Table.Row key={language.language?.id}>
-                <Table.Cell>{language.language?.languageName}</Table.Cell>
+                <Table.Cell width="8">
+                  {language.language?.languageName}
+                </Table.Cell>
                 <Table.Cell>{language.language?.languageLevel}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
         </Table>
+        <Card.Content>
+          {" "}
+          <Popup
+            trigger={
+              <button
+                style={{ marginLeft: "-0.5em" }}
+                className="btn btn-success px-3"
+              >
+                {" "}
+                Edit Languages
+              </button>
+            }
+            modal
+          >
+            <AddLanguageToCv />
+          </Popup>
+        </Card.Content>
       </Card>
 
       <Card color="violet" fluid>
@@ -381,6 +429,23 @@ export default function CandidateCvInfo({ cv }) {
             ))}
           </Table.Body>
         </Table>
+        <Card.Content>
+          {" "}
+          <Popup
+            trigger={
+              <button
+                style={{ marginLeft: "-0.5em" }}
+                className="btn btn-success px-3"
+              >
+                {" "}
+                Edit Talents
+              </button>
+            }
+            modal
+          >
+            <UpdateTalents />
+          </Popup>
+        </Card.Content>
       </Card>
     </div>
   );
