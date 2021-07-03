@@ -37,6 +37,7 @@ export default function Navi() {
     { key: 1, text: "Confirm Job Advertisement", icon: "clipboard check", as: NavLink, to: "/jobAdvertisementConfirm"},
     { key: 2, text: "Personels", icon: "user circle", as: NavLink, to: "/employees"},
     { key: 3, text: "Personel Profile Update", icon: "edit", as: NavLink, to: "/employeeUpdate"},
+    { key: 4, text: "Candidate Cv Update", icon: "edit", as: NavLink, to: "/candidateCvUpdate"},
   ]
 
   return (

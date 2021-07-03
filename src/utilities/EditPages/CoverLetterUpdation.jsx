@@ -65,7 +65,7 @@ export default function UpdateCoverLetter() {
                     {formik.errors.coverLetter}
                   </div>
                 )}
-              <Button color="violet" size="large" type="submit">Update</Button>
+              <Button style={{marginTop: "1em"}} color="violet" size="large" type="submit">Update</Button>
               </Form>
         </div>
     )
