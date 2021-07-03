@@ -45,4 +45,8 @@ export default class CandidateCvService{
         return axios.put(`http://localhost:8080/api/candidatesCvs/updateCoverLetter?coverLetter=${coverLetter}&cvId=${cvId}`)
     }
 
+    deleteCvAvatar(cvId){
+        return axios.post("http://localhost:8080/api/candidatesCvs/deleteCvAvatar?id="+cvId)
+    }
+
 }

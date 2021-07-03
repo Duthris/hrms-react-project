@@ -12,10 +12,8 @@ import {
   Segment,
   Image,
 } from "semantic-ui-react";
-import { useEffect } from "react";
-import CandidateCvService from "../services/candidateService";
+import CandidateCvService from "../services/candidateCvService";
 import swal from "sweetalert";
-import * as Yup from "yup";
 import PersonalInfosUpdation from "../utilities/EditPages/PersonalInfosUpdation";
 import Popup from "reactjs-popup";
 import GithubUpdation from "../utilities/EditPages/GithubUpdation";
@@ -27,6 +25,7 @@ import "reactjs-popup/dist/index.css";
 import AddLanguageToCv from "../utilities/EditPages/AddLanguageToCv";
 import UpdateTalents from "../utilities/EditPages/UpdateTalents";
 import UpdateJobExperiences from "../utilities/EditPages/UpdateJobExperiences";
+import UpdateAvatar from "../utilities/EditPages/UpdateAvatar";
 
 export default function CandidateCvInfo({ cv }) {
   const history = useHistory();
@@ -87,11 +86,63 @@ export default function CandidateCvInfo({ cv }) {
     });
   };
 
+  const deleteCvAvatar = (cvId) => {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover your Cv Avatar!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+            candidateCvService.deleteCvAvatar(cvId).then(
+            swal("Succeed! Your Cv Avatar has been deleted!", {
+              icon: "success",
+            }).then(function () {
+                window.location.reload()
+            })
+          );
+        } else {
+          swal(
+            "Cancelled",
+            "Don't worry the your Cv Avatar is still there :)",
+            "error"
+          );
+        }
+      });
+};
+
+
   return (
     <div>
       <Card.Group stackable>
         <Card color="violet" fluid>
           <Image centered src={cv.avatarLink} bordered rounded size="small" />
+         <Card.Meta>
+         <Popup
+                            trigger={
+                              <button
+                                style={{ marginTop: "1em", marginBottom: "1em" }}
+                                className="btn btn-success px-3"
+                              >
+                                {" "}
+                               <i className="cloud upload icon"></i> Upload Avatar
+                              </button>
+                            }
+                            modal
+                          >
+                            <UpdateAvatar />
+                          </Popup>
+
+                          <Button
+                            style={{ marginLeft: "1em" }}
+                            size="small"
+                            negative
+                            onClick={(e) => deleteCvAvatar(cv.id)}
+                          >
+                            <Icon name="trash alternate" /> Delete
+                          </Button>
+         </Card.Meta>
           <Card.Content>
             <Card.Header>
               {cv.candidate?.firstName + " " + cv.candidate?.lastName}
@@ -168,7 +219,7 @@ export default function CandidateCvInfo({ cv }) {
                                 className="btn btn-success px-3"
                               >
                                 {" "}
-                                Edit Github
+                                <i className="edit icon"></i> Edit Github
                               </button>
                             }
                             modal
@@ -208,7 +259,7 @@ export default function CandidateCvInfo({ cv }) {
                                 className="btn btn-success px-3"
                               >
                                 {" "}
-                                Edit Linked.in
+                                <i className="edit icon"></i> Edit Linked.in
                               </button>
                             }
                             modal
@@ -237,7 +288,7 @@ export default function CandidateCvInfo({ cv }) {
                     className="btn btn-success px-3"
                   >
                     {" "}
-                    Edit Personal Infos
+                    <i className="edit icon"></i>  Edit Personal Infos
                   </button>
                 }
                 modal
@@ -264,7 +315,7 @@ export default function CandidateCvInfo({ cv }) {
                 className="btn btn-success px-3"
               >
                 {" "}
-                <i className="cloud upload icon"></i>Edit Cover Letter
+                <i className="edit icon"></i> Edit Cover Letter
               </button>
             }
             modal
@@ -312,7 +363,7 @@ export default function CandidateCvInfo({ cv }) {
                 className="btn btn-success px-3"
               >
                 {" "}
-                Edit Schools
+                <i className="edit icon"></i> Edit Schools
               </button>
             }
             modal
@@ -362,7 +413,7 @@ export default function CandidateCvInfo({ cv }) {
                 className="btn btn-success px-3"
               >
                 {" "}
-                Edit Job Experiences
+                <i className="edit icon"></i>  Edit Job Experiences
               </button>
             }
             modal
@@ -402,7 +453,7 @@ export default function CandidateCvInfo({ cv }) {
                 className="btn btn-success px-3"
               >
                 {" "}
-                Edit Languages
+                <i className="edit icon"></i> Edit Languages
               </button>
             }
             modal
@@ -438,7 +489,7 @@ export default function CandidateCvInfo({ cv }) {
                 className="btn btn-success px-3"
               >
                 {" "}
-                Edit Talents
+                <i className="edit icon"></i>  Edit Talents
               </button>
             }
             modal
