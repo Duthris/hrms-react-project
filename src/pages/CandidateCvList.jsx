@@ -14,7 +14,7 @@ export default function CandidateCvList() {
 
   return (
     <div>
-       <Header as="h2">
+       <Header style={{marginTop: "1em"}} as="h2">
         <Icon name="file alternate" />
         <Header.Content>Candidate Resumes</Header.Content>
       </Header>

@@ -14,7 +14,7 @@ export default function CandidateList() {
 
   return (
     <div>
-      <Header as="h2">
+      <Header style={{marginTop: "1em"}} as="h2">
         <Icon name="list alternate outline" />
         <Header.Content>Candidates</Header.Content>
       </Header>

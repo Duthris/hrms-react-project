@@ -18,8 +18,12 @@ import Home from "./Home";
 import { ToastContainer } from "react-toastify";
 import EmployeeDetailList from "../pages/EmployeeDetailList"
 import CandidateCvDetail from "../pages/CandidateCvDetail"
+import { useSelector } from "react-redux";
 
 export default function Dashboard() {
+
+  const {authItem} = useSelector(state => state.auth)
+
   return (
     <div>
       <ToastContainer position="bottom-right"/>
@@ -38,13 +42,22 @@ export default function Dashboard() {
             <Route exact path="/candidates" component={CandidateList} />
             <Route exact path="/candidateCvs" component={CandidateCvList} />
             <Route exact path="/candidateCvs/:id" component={CandidateCvDetailList} />
-            <Route exact path="/jobAdvertisementPost" component={JobAdvertisementPost} />
-            <Route exact path="/jobAdvertisementConfirm" component={JobAdvertisementConfirm} />
+            {authItem[0].loggedIn && authItem[0].user.userType===2 && 
+            <Route exact path="/jobAdvertisementPost" component={JobAdvertisementPost} /> }
+
+            {authItem[0].loggedIn && authItem[0].user.userType===3 && 
+            <Route exact path="/jobAdvertisementConfirm" component={JobAdvertisementConfirm} /> }
+
             <Route exact path="/jobAdvertisements/:id" component={JobAdvertisementDetails} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/employeeUpdate" component={EmployeeDetailList} />
-            <Route exact path="/candidateCvUpdate" component={CandidateCvDetail} />
+
+            {authItem[0].loggedIn && authItem[0].user.userType===3 && 
+            <Route exact path="/employeeUpdate" component={EmployeeDetailList} /> }
+
+            {authItem[0].loggedIn && authItem[0].user.userType===1 && 
+            <Route exact path="/candidateCvUpdate" component={CandidateCvDetail} /> }
+
           </Grid.Column>
         </Grid.Row>
       </Grid>

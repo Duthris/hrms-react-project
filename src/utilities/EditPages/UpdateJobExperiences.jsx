@@ -16,17 +16,20 @@ import { useFormik } from "formik";
 import JobPositionService from "../../services/jobPositionService";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert"
+import { useSelector } from "react-redux";
 
 export default function UpdateExperiance() {
   const [jobExperiences, setJobExperiences] = useState([]);
 
   const history = useHistory();
 
+  const { authItem } = useSelector((state) => state.auth);
+
   let candidateJobExperienceService = new CandidateJobExperienceService();
 
   useEffect(() => {
     let candidateJobExperienceService = new CandidateJobExperienceService();
-    candidateJobExperienceService.getByCvId(1).then((result) => {
+    candidateJobExperienceService.getByCvId(authItem[0].user.id).then((result) => {
       setJobExperiences(result.data.data);
     });
   }, []);

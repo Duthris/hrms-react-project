@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
+import { useSelector } from "react-redux";
 
 export default function UpdateTalent() {
 
@@ -17,9 +18,11 @@ export default function UpdateTalent() {
 
   const history = useHistory();
 
+  const { authItem } = useSelector((state) => state.auth);
+
   useEffect(() => {
     let candidateTalentService = new CandidateTalentService();
-    candidateTalentService.getByCandidateCvId(1).then((result) => {
+    candidateTalentService.getByCandidateCvId(authItem[0].user.id).then((result) => {
       setCandidateTalents(result.data.data);
     });
   },[]);
@@ -37,7 +40,7 @@ export default function UpdateTalent() {
     onSubmit: (values) => {
       console.log(values)
       candidateTalentService
-        .addTalentToCv(1,values)
+        .addTalentToCv(authItem[0].user.id,values)
         .then((result) => {
           if (result.data.success === true) {
             swal({

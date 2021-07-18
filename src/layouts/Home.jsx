@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
   Container,
@@ -9,8 +10,10 @@ import {
 } from "semantic-ui-react";
 import '../App.css'
 
-class Home extends React.Component {
-  render() {
+export default function Footer() {
+
+    const {authItem} = useSelector(state => state.auth)
+
     return (
       <div>
         <Container style={{ marginTop: "5em" }}>
@@ -35,13 +38,15 @@ class Home extends React.Component {
                    <h3 className="description-color">{"“The journey of a thousand miles begins with one step.”"}</h3> 
                   }
                 </Item.Description>
+
+                {!authItem[0].loggedIn && 
                 <Item.Extra style={{ marginTop: "1em" }}>
                   {
                     <h4>"Would you like to take this step with us?"</h4>
                   }
-                </Item.Extra>
-                
+                </Item.Extra>}
 
+                {!authItem[0].loggedIn && 
                 <Menu.Item style={{ marginTop: "1em" }}>
                   <Button.Group size="medium">
                     <Button
@@ -76,7 +81,7 @@ class Home extends React.Component {
                       </Button.Content>
                     </Button>
                   </Button.Group>
-                </Menu.Item>
+                </Menu.Item>}
               </Item.Content>
               </div>
             </Item>
@@ -85,6 +90,3 @@ class Home extends React.Component {
       </div>
     );
   }
-}
-
-export default Home;

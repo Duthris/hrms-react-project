@@ -16,7 +16,7 @@ export default function JobAdvertisementDetails() {
 
   return (
     <div>
-      <Card fluid color={"violet"}>
+      <Card style={{marginTop: "5em"}} fluid color={"violet"}>
         <Card.Content header="Description" />
         <Card.Content> <div dangerouslySetInnerHTML={{ __html: job.description}} /></Card.Content>
       </Card>
@@ -96,7 +96,7 @@ export default function JobAdvertisementDetails() {
                       as={Link}
                       to={`/employers/${job.employer?.id}`}
                     >
-                      <Button.Content visible>Detaylara Git</Button.Content>
+                      <Button.Content visible>Show Details</Button.Content>
                       <Button.Content hidden>
                         <Icon name="arrow right" />
                       </Button.Content>

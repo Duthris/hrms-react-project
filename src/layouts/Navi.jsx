@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Icon, Menu, Dropdown, Input } from "semantic-ui-react";
+import { Icon, Menu, Dropdown, Container, Grid } from "semantic-ui-react";
 import SignedIn from "./SignedIn";
 import SignedOut from "./SignedOut";
 import { NavLink } from "react-router-dom";
@@ -35,15 +35,16 @@ export default function Navi() {
 
   const options3 = [
     { key: 1, text: "Confirm Job Advertisement", icon: "clipboard check", as: NavLink, to: "/jobAdvertisementConfirm"},
-    { key: 2, text: "Personels", icon: "user circle", as: NavLink, to: "/employees"},
-    { key: 3, text: "Personel Profile Update", icon: "edit", as: NavLink, to: "/employeeUpdate"},
-    { key: 4, text: "Candidate Cv Update", icon: "edit", as: NavLink, to: "/candidateCvUpdate"},
+  ]
+
+  const options4 = [
+    { key: 1, text: "Personels", icon: "user circle", as: NavLink, to: "/employees"},
   ]
 
   return (
     <div>
+      <Grid stackable>
       <Menu stackable inverted fixed="top" size="large" color="violet">
-     
           <Menu.Item name="user md" >
             <Icon name="user md" size="large" />
             Human Resource Management System
@@ -52,26 +53,18 @@ export default function Navi() {
           <Menu.Item style={{margin:"0.5em"}} as={NavLink} to="/" name="home">
             <Icon name="home" /> Home
           </Menu.Item>
-
+          <Container>
           <Dropdown trigger={<span><Icon name='building'/> Companies</span>}  
-          style={{ margin: "0.5em" }} item direction="left" options={options} />
+          style={{ marginLeft: "20em", marginRight: "1em" }} item direction="left" options={options} />
+
+          <Dropdown trigger={<span><Icon name='user'/> Employees</span>}
+          style={{ margin: "0.5em", marginleft: "1em"}} item direction="left" options={options4} /> 
 
           <Dropdown trigger={<span><Icon name='user'/> Candidates</span>}  
-          style={{ margin: "0.5em", marginLeft: "-0.6em"}} item direction="left" options={options2} />
+          style={{ margin: "0.5em", marginLeft: "0.1em"}} item direction="left" options={options2} />
+            </Container>
 
-          <Menu.Item>
-            <Input className='icon' icon='search' placeholder='Search...' />
-          </Menu.Item>
-
-          <Menu.Item position='right'>
-            <Input
-              style={{ marginLeft: "-0.5em"}}
-              action={{ type: 'submit', content: 'Go' }}
-              placeholder='Navigate to...'
-            />
-          </Menu.Item>
-
-         <Menu.Item
+        {authItem[0].loggedIn && authItem[0].user.userType===2 && <Menu.Item
             position="right"
             as={NavLink}
             to="/jobAdvertisementPost"
@@ -79,15 +72,17 @@ export default function Navi() {
             style={{ margin: "0.5em" }}
           >
             <Icon name="user plus" /> Add Job Advertisement
-          </Menu.Item>
+          </Menu.Item> }
           
           <Menu.Menu style={{ margin: "0.5em" }}>
           {authItem[0].loggedIn?<SignedIn/>:<SignedOut/>}
           </Menu.Menu>
 
-          <Dropdown trigger={<span><Icon name='key'/> Admin</span>}  style={{ margin: "0.5em" }} item direction="left" options={options3} />
-  
+          {authItem[0].loggedIn && authItem[0].user.userType===3 &&
+          <Dropdown trigger={<span><Icon name='key'/> Admin</span>}  style={{ margin: "0.5em" }} item direction="left" options={options3} />}
+
       </Menu>
+      </Grid>
     </div>
   );
 }

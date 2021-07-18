@@ -23,11 +23,9 @@ export default function EmployerDetail() {
       .then((result) => setJobs(result.data.data));
   },[id]);
 
-  console.log(jobs)
-
   return (
     <div>
-      <Table celled>
+      <Table celled style={{marginTop: "2em"}}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Employer</Table.HeaderCell>
@@ -117,7 +115,7 @@ export default function EmployerDetail() {
                   .toString().split(".", 1)}{" "} days</Table.Cell>
                   <Table.Cell>
                     <Button color="violet" animated as={Link} to={`/jobAdvertisements/${job.id}`}>
-                      <Button.Content visible>Detayları Gör</Button.Content>
+                      <Button.Content visible>Show Details</Button.Content>
                       <Button.Content hidden>
                         <Icon name="arrow right" />
                       </Button.Content>

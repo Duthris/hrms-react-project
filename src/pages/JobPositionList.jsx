@@ -12,7 +12,7 @@ export default function JobPositionList() {
 
   return (
     <div>
-      <Header as="h2">
+      <Header style={{marginTop: "1em"}} as="h2">
         <Icon name="list alternate outline" />
         <Header.Content>Job Positions</Header.Content>
       </Header>

@@ -14,7 +14,7 @@ export default function EmployeeList() {
 
   return (
     <div>
-      <Header as="h2">
+      <Header style={{marginTop: "1em"}} as="h2">
         <Icon name="list alternate outline" />
         <Header.Content>Employees</Header.Content>
       </Header>

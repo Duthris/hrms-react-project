@@ -1,10 +1,6 @@
-import React, { useState } from "react";
-import { useFormik } from "formik";
+import React from "react";
 import {
-  Form,
   Button,
-  Input,
-  Grid,
   Icon,
   Card,
   Header,
@@ -112,10 +108,9 @@ export default function CandidateCvInfo({ cv }) {
       });
 };
 
-
   return (
     <div>
-      <Card.Group stackable>
+      <Card.Group style={{marginTop: "1em"}} stackable>
         <Card color="violet" fluid>
           <Image centered src={cv.avatarLink} bordered rounded size="small" />
          <Card.Meta>

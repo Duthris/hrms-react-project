@@ -17,7 +17,7 @@ export default function CandidateCvDetailList() {
 
   return (
     <div>
-      <Card.Group>
+      <Card.Group style={{marginTop: "1em"}}>
         <Card color="violet" fluid>
         <Image centered src={cv.avatarLink} bordered rounded size="small"/>
           <Card.Content>

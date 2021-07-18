@@ -55,7 +55,7 @@ export default function JobAdvertisementConfirm() {
 
   return (
     <div>
-      <Header as="h2">
+      <Header style={{marginTop: "1em"}} as="h2">
         <Icon name="thumbtack" />
         <Header.Content>Job Advertisement Requests</Header.Content>
       </Header>

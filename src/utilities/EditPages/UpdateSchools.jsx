@@ -17,7 +17,7 @@ export default function UpdateSchools() {
   let candidateSchoolService = new CandidateSchoolService();
   useEffect(() => {    
     let candidateSchoolService = new CandidateSchoolService();
-    candidateSchoolService.getByCandidateCvId(1).then((result) => {
+    candidateSchoolService.getByCandidateCvId(authItem[0].user.id).then((result) => {
       setSchools(result.data.data);
     });
   },[]);
@@ -40,7 +40,7 @@ export default function UpdateSchools() {
     },
     validationSchema: schoolAddSchema,
     onSubmit:(values)=>{
-        values.cvId = 1;
+        values.cvId = authItem[0].user.id;
       candidateSchoolService.add(values).then((result) => {
         if (result.data.success === true) {
             swal({

@@ -12,6 +12,7 @@ import {
 import JobAdvertisementService from "../services/jobAdvertisementService";
 import JobAdvertisementFilter from "../layouts/filters/JobAdvertisementFilter";
 import JobAdvertisementFavoriteService from "../services/jobAdvertisementFavoriteService"
+import { useSelector } from "react-redux";
 
 export default function JobAdvertisementList() {
   const [jobs, setJobs] = useState([]);
@@ -59,6 +60,8 @@ export default function JobAdvertisementList() {
     });
   };
 
+  const { authItem } = useSelector((state) => state.auth);
+
   return (
     <div>
       <Grid style={{marginLeft: "-21rem", marginTop: "1rem"}}>
@@ -86,7 +89,7 @@ export default function JobAdvertisementList() {
             <Table.HeaderCell>Deadline</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell>Detail</Table.HeaderCell>
-            <Table.HeaderCell>Add to Favorites</Table.HeaderCell>
+            {authItem[0].loggedIn && authItem[0].user.userType===1 && <Table.HeaderCell>Add to Favorites</Table.HeaderCell> }
           </Table.Row>
           </Table.Header>
 
@@ -128,13 +131,13 @@ export default function JobAdvertisementList() {
                 </Button>
               </Table.Cell>
               <Table.Cell>
-              <Button 
-                onClick={() => addToFavorite(5, job.id)}
+              {authItem[0].loggedIn && authItem[0].user.userType===1 && <Button 
+                onClick={() => addToFavorite(authItem[0].user.id, job.id)}
                  color="olive"
                  size="medium"
                  >
                   <Icon name="heart"/>
-                </Button>
+                </Button> }
               </Table.Cell>
             </Table.Row>
           ))}
