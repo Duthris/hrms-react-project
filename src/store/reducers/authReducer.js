@@ -8,11 +8,13 @@ const initialState = {
 export default function authReducer(state=initialState,{type,payload}){
     switch (type) {
         case USER_LOGIN:
+            state.authItem = payload
             return{
                 ...state,
                 authItem:[...[{loggedIn:true,user:payload}]]
             }
         case USER_LOGOUT:
+            state.user = payload
             return{
                 ...state,
                 authItem:[{loggedIn:false}]
