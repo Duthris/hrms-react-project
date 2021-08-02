@@ -38,7 +38,6 @@ export default function UpdateTalent() {
     },
     validationSchema: talentAddSchema,
     onSubmit: (values) => {
-      console.log(values)
       candidateTalentService
         .addTalentToCv(authItem[0].user.id,values)
         .then((result) => {

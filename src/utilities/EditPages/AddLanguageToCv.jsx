@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import CandidateLanguageService from "../../services/candidateLanguageService";
 import LanguageService from "../../services/languageService"
-
+import CandidateCvService from "../../services/candidateCvService"
 import { Card, Table, Button, Icon, Form, Grid, Dropdown } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
+import { useSelector } from "react-redux";
 
 export default function UpdateLanguage() {
 
@@ -17,9 +18,11 @@ export default function UpdateLanguage() {
 
   const history = useHistory();
 
+  const {authItem} = useSelector(state => state.auth)
+
   useEffect(() => {
-    let candidateLanguageService = new CandidateLanguageService();
-    candidateLanguageService.getByCandidateCvId(1).then((result) => {
+    let candidateCvService = new CandidateCvService();
+    candidateCvService.getByCandidateId(authItem[0].user.id).then((result) => {
       setCandidateLanguages(result.data.data);
     });
   },[]);
@@ -37,7 +40,7 @@ export default function UpdateLanguage() {
     onSubmit: (values) => {
       values.id = parseInt(values.id);
       candidateLanguageService
-        .addLanguageToCv(values,1)
+        .addLanguageToCv(values,authItem[0].user.id)
         .then((result) => {
           if (result.data.success === true) {
             swal({
@@ -120,7 +123,7 @@ export default function UpdateLanguage() {
           </Table.Header>
 
           <Table.Body>
-            {candidateLanguages.map((candidateLanguage) => (
+            {candidateLanguages.languages?.map((candidateLanguage) => (
               <Table.Row key={candidateLanguage.language?.id}>
                 <Table.Cell width="2">{candidateLanguage.language?.languageName}</Table.Cell>
                 <Table.Cell width="1">{candidateLanguage.language?.languageLevel}</Table.Cell>

@@ -25,28 +25,28 @@ export default class CandidateCvService{
         return axios.get("http://localhost:8080/api/candidatesCvs/getById?id="+id)
     }
 
-    updateGithub(githubLink, cvId){
-        return axios.put(`http://localhost:8080/api/candidatesCvs/updateGithub?cvId=${cvId}&githubLink=${githubLink}`)
+    updateGithub(githubLink, candidateId){
+        return axios.put(`http://localhost:8080/api/candidatesCvs/updateGithub?candidateId=${candidateId}&githubLink=${githubLink}`)
     }
 
-    deleteGithub(cvId){
-        return axios.put("http://localhost:8080/api/candidatesCvs/deleteGithub?cvId="+cvId)
+    deleteGithub(candidateId){
+        return axios.put("http://localhost:8080/api/candidatesCvs/deleteGithub?candidateId="+candidateId)
     }
 
-    updateLinkedin(linkedinLink, cvId){
-        return axios.put(`http://localhost:8080/api/candidatesCvs/updateLinkedin?cvId=${cvId}&linkedinLink=${linkedinLink}`)
+    updateLinkedin(linkedinLink, candidateId){
+        return axios.put(`http://localhost:8080/api/candidatesCvs/updateLinkedin?candidateId=${candidateId}&linkedinLink=${linkedinLink}`)
     }
 
-    deleteLinkedin(cvId){
-        return axios.put("http://localhost:8080/api/candidatesCvs/deleteLinkedin?cvId="+cvId)
+    deleteLinkedin(candidateId){
+        return axios.put("http://localhost:8080/api/candidatesCvs/deleteLinkedin?candidateId="+candidateId)
     }
 
-    updateCoverLetter(coverLetter, cvId){
-        return axios.put(`http://localhost:8080/api/candidatesCvs/updateCoverLetter?coverLetter=${coverLetter}&cvId=${cvId}`)
+    updateCoverLetter(coverLetter, candidateId){
+        return axios.put(`http://localhost:8080/api/candidatesCvs/updateCoverLetter?coverLetter=${coverLetter}&candidateId=${candidateId}`)
     }
 
-    deleteCvAvatar(cvId){
-        return axios.post("http://localhost:8080/api/candidatesCvs/deleteCvAvatar?id="+cvId)
+    deleteCvAvatar(candidateId){
+        return axios.post("http://localhost:8080/api/candidatesCvs/deleteCvAvatar?candidateId="+candidateId)
     }
 
 }

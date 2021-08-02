@@ -24,7 +24,7 @@ export default function UptadeGithub() {
         },
         validationSchema: updateGithubSchema,
         onSubmit:(values) =>{
-            candidateCvService.updateGithub(values.githubLink,1).then((result) =>{
+            candidateCvService.updateGithub(values.githubLink,authItem[0].user.id).then((result) =>{
                 if (result.data.success === true) {
                     swal({
                       title: "Succeed!",

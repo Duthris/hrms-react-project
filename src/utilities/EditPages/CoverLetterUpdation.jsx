@@ -30,7 +30,7 @@ export default function UpdateCoverLetter() {
         },
         validationSchema: updateCoverLetterSchema,
         onSubmit:(values) =>{
-            candidateCvService.updateCoverLetter(values.coverLetter,1).then((result) =>{
+            candidateCvService.updateCoverLetter(values.coverLetter,authItem[0].user.id).then((result) =>{
                 if (result.data.success === true) {
                     swal({
                       title: "Succeed!",

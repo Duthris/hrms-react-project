@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import {
   Table,
   Button,
@@ -22,7 +22,22 @@ export default function JobAdvertisementList() {
   const [pageSize, setPageSize] = useState(2);
   const [totalPageSize, setTotalPageSize] = useState(0);
 
+  let [favorites, setFavorites] = useState([]);
+
   const { addToast } = useToasts();
+
+  useEffect(() => {
+    let favoriteService = new JobAdvertisementFavoriteService();
+    if(authItem[0].loggedIn===true && authItem[0].user.userType===1){
+      favoriteService.getByCandidateId(authItem[0].user.id).then((result) => {
+        setFavorites(result.data.data.map((favoritedAdvertisement) => (
+          favoritedAdvertisement.jobAdvertisement.id
+        )))
+      })
+    }
+  }, []);
+
+
 
   useEffect(() => {
     let jobAdvertisementService = new JobAdvertisementService();
@@ -131,12 +146,14 @@ export default function JobAdvertisementList() {
                 </Button>
               </Table.Cell>
               <Table.Cell>
-              {authItem[0].loggedIn && authItem[0].user.userType===1 && <Button 
+              {authItem[0].loggedIn && authItem[0].user.userType===1 && 
+              <Button 
                 onClick={() => addToFavorite(authItem[0].user.id, job.id)}
-                 color="olive"
+                 color={favorites.includes(job.id)?"red":"green"}
                  size="medium"
                  >
-                  <Icon name="heart"/>
+                  <Icon name={favorites.includes(job.id)?"heart":"heart outline"}
+                   />
                 </Button> }
               </Table.Cell>
             </Table.Row>

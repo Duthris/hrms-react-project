@@ -42,7 +42,7 @@ export default function UpdateExperiance() {
       positionName: "",
       startingDate: "",
       endDate: "",
-      cvId: 1,
+      cvId: authItem[0].user.id,
       isQuited: false,
     },
     validationSchema: jobExperienceAddSchema,

@@ -13,7 +13,7 @@ export default function CandidateCvDetail() {
 
     useEffect(() => {
         const candidateCvService = new CandidateCvService()
-        candidateCvService.getById(authItem[0].user.id).then(result => setCv(result.data.data))
+        candidateCvService.getByCandidateId(authItem[0].user.id).then(result => setCv(result.data.data))
     }, [])
 
     return (

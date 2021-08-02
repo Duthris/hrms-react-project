@@ -24,7 +24,7 @@ export default function UpdateLinkedin() {
         },
         validationSchema: updateLinkedinSchema,
         onSubmit:(values) =>{
-            candidateCvService.updateLinkedin(values.linkedinLink,1).then((result) =>{
+            candidateCvService.updateLinkedin(values.linkedinLink,authItem[0].user.id).then((result) =>{
                 if (result.data.success === true) {
                     swal({
                       title: "Succeed!",

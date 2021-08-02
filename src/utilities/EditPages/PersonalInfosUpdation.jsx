@@ -17,7 +17,7 @@ export default function UpdatePersonalInfos() {
   useEffect(() => {
     let candidateCvService = new CandidateCvService();
     candidateCvService
-      .getById(1)
+      .getByCandidateId(authItem[0].user.id)
       .then((result) => setCv(result.data.data));
   }, []);
 
@@ -41,7 +41,7 @@ export default function UpdatePersonalInfos() {
         },
         validationSchema: updatePersonalInfosSchema,
         onSubmit:(values) =>{
-          values.id = 1;
+          values.id = authItem[0].user.id;
             candidateService.update(values).then((result) =>{
                 if (result.data.success === true) {
                     swal({

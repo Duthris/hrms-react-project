@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Card, Button } from "semantic-ui-react";
 import CandidateCvService from "../../services/candidateCvService";
 import swal from "sweetalert"
-import { useHistory } from "react-router-dom";
 
 export default class UpdateAvatar extends Component {
   state = {
@@ -15,6 +14,7 @@ export default class UpdateAvatar extends Component {
     });
   };
 
+
   multipartFileUploadHandler = () => {
     const formData = new FormData();
     formData.append(
@@ -26,7 +26,7 @@ export default class UpdateAvatar extends Component {
 
     let candidateCvService = new CandidateCvService();
     candidateCvService
-      .addCvAvatar(1, formData)
+      .addCvAvatar(console.log(), formData)
       .then((result) => {
         if (result.data.success === true) {
             swal({
