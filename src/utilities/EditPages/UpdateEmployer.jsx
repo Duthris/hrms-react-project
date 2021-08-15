@@ -30,10 +30,10 @@ export default function UpdateEmployer() {
       }, [authItem]);
     
       const employerUpdateShema= Yup.object().shape({
-        companyName: Yup.string().required("Bu alan boş birakılamaz").min(2,"En az 2 karakter uzunlugunda olmalıdır"),
-        email: Yup.string().required("Bu alan zorunludur").email("Hatalı email girdiniz"),
-        phoneNumber: Yup.string().required("Bu alan zorunludur").min(11,"Telegon numarası 11 haneli olmalıdır").max(11,"Telegon numarası 11 haneli olmalıdır"),
-        webSite: Yup.string().required("Bu alan zorunludur")
+        companyName: Yup.string().required("Must be filled!").min(2,"Minimum of 2 character is required!"),
+        email: Yup.string().required("Must be filled!").email("Inavlid E-mail format"),
+        phoneNumber: Yup.string().required("Must be filled!").min(11,"Phone number must be 11 character").max(11,"Phone number must be 11 character"),
+        webSite: Yup.string().required("Must be filled!")
       })
     
       const formik = useFormik({
@@ -57,24 +57,24 @@ export default function UpdateEmployer() {
             {console.log(employer)}
       {employer.waitingUpdate === true && (
         <Message positive>
-          <Message.Header>Son güncelleme isteginiz onay bekliyor</Message.Header>
+          <Message.Header>Update request is still on progress</Message.Header>
           <p>
-            En son yaptıgınız güncelleme isteği onaylanana kadar yeni günceleme yapamazsınız personelimiz en kısa sürede isteğinizi onaylayacaktır
+            You already have a update request. You cannot make more update request until your last request has considered.
           </p>
         </Message>
       )}
       {employer.waitingUpdate === false && (
           <Card fluid color={"black"}>
-              <Card.Content header={"Şirket Bilgilerini Güncelle"}/>
+              <Card.Content header={"Update Company Infos"}/>
               <Card.Content>
                   <Form onSubmit={formik.handleSubmit}>
                     <Grid>
                         <Grid.Column width={8}>
                             <div>
-                            <label><b>Şirket Adı</b></label>
+                            <label><b>Company Name</b></label>
                             <Form.Input
                                 fluid
-                                placeholder="Şirket Adı"
+                                placeholder="Company Name"
                                 type="text"
                                 name="companyName"
                                 value={formik.values.companyName}
@@ -87,10 +87,10 @@ export default function UpdateEmployer() {
                                 </div>
                             )}
                             </div>
-                            <label><b>Email</b></label>
+                            <label><b>E-mail</b></label>
                             <Form.Input
                                 fluid
-                                placeholder="Şirket Adı"
+                                placeholder="E-mail"
                                 type="email"
                                 name="email"
                                 value={formik.values.email}
@@ -105,10 +105,10 @@ export default function UpdateEmployer() {
                         </Grid.Column>
                         <Grid.Column width={8}>
                             <div>
-                            <label><b>Web Site</b></label>
+                            <label><b>Website</b></label>
                             <Form.Input
                                 fluid
-                                placeholder="Web Sitesi"
+                                placeholder="Website"
                                 type="text"
                                 name="webSite"
                                 value={formik.values.webSite}
@@ -121,10 +121,10 @@ export default function UpdateEmployer() {
                                 </div>
                             )}
                             </div>
-                            <label><b>Telefon</b></label>
+                            <label><b>Phone Number</b></label>
                             <Form.Input
                                 fluid
-                                placeholder="Telefon"
+                                placeholder="Phone Number"
                                 type="text"
                                 name="phoneNumber"
                                 value={formik.values.phoneNumber}
@@ -139,7 +139,7 @@ export default function UpdateEmployer() {
                         </Grid.Column>
                     </Grid>
                     <div style={{marginTop:"1em"}}>
-                    <Button fluid color="green" type="submit">Güncelle</Button>
+                    <Button fluid color="green" type="submit">Update</Button>
                     </div>
                   </Form>
               </Card.Content>

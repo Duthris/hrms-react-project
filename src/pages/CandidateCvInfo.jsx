@@ -109,7 +109,7 @@ export default function CandidateCvInfo({ cv }) {
 };
 
   return (
-    <div>
+    <div style={{marginLeft: "-6em"}}>
       <Card.Group style={{marginTop: "1em"}} stackable>
         <Card color="violet" fluid>
           <Image centered src={cv.avatarLink} bordered rounded size="small" />
