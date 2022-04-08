@@ -26,7 +26,7 @@ export default class UpdateAvatar extends Component {
 
     let candidateCvService = new CandidateCvService();
     candidateCvService
-      .addCvAvatar(console.log(), formData)
+      .addCvAvatar(console.log(this.state.auth), formData)
       .then((result) => {
         if (result.data.success === true) {
             swal({

@@ -106,7 +106,7 @@ export default function JobAdvertisementList() {
             <Table.HeaderCell>Detail</Table.HeaderCell>
             {authItem[0].loggedIn && authItem[0].user.userType===1 && <Table.HeaderCell>Add to Favorites</Table.HeaderCell> }
           </Table.Row>
-          </Table.Header>
+          </Table.Header> 
 
         <Table.Body>
           {jobs?.map((job) => (
