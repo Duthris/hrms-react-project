@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import JobAdvertisementList from "../pages/JobAdvertisementList";
 import EmployeeList from "../pages/EmployeeList";
 import EmployerList from "../pages/EmployerList";
@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 import EmployeeDetailList from "../pages/EmployeeDetailList"
 import CandidateCvDetail from "../pages/CandidateCvDetail"
 import { useSelector } from "react-redux";
+import NotFound from "./NotFound/NotFound.jsx"
 
 export default function Dashboard() {
 
@@ -33,6 +34,8 @@ export default function Dashboard() {
             
           </Grid.Column>
           <Grid.Column width={13}>
+
+            <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/jobAdvertisements" component={JobAdvertisementList} />
             <Route exact path="/employees" component={EmployeeList} />
@@ -57,6 +60,10 @@ export default function Dashboard() {
 
             {authItem[0].loggedIn && authItem[0].user.userType===1 && 
             <Route exact path="/candidateCvUpdate" component={CandidateCvDetail} /> }
+
+            <Route path="*" component={NotFound} />
+
+            </Switch>
 
           </Grid.Column>
         </Grid.Row>
