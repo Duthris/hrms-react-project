@@ -2,7 +2,7 @@
 
 ## Backend of the project in Java Spring Boot: [HRMS Backend](https://github.com/Duthris/hrms-backend-last)
 
-## To test it in Live Server: [HRMS Live](https://hrms.duthris.repl.co)
+## To test it in Live Server: [HRMS Live](https://duthris.com)
 
 ## Project has 3 types of users that are Candidates, Employers and Employees. For making it public to test, mernis verification is removed. Therefore, you can sign-up and login as both Candidate or Employer.
 
