@@ -8,9 +8,11 @@ import WorkingTimeService from "../services/workingTimeService";
 import WorkingMethodService from "../services/workingMethodService";
 import JobAdvertisementService from "../services/jobAdvertisementService";
 import RichTextEditor from '../components/RichTextEditor/RichTextEditor';
+import { useSelector } from "react-redux";
 import swal from 'sweetalert';
 
 export default function JobAdCreate() {
+  const {authItem} = useSelector(state => state.auth)
   let jobAdvertisementService = new JobAdvertisementService();
   const JobAdvertAddSchema = Yup.object().shape({
     expirationDate: Yup.date().nullable().required("Expiration Date must be filled!"),
@@ -37,7 +39,7 @@ export default function JobAdCreate() {
     },
     validationSchema: JobAdvertAddSchema,
     onSubmit: (values) => {
-      values.employerId = 3;
+      values.employerId = authItem[0].user.id;
       values.jobPositionId = parseInt(values.jobPositionId);
       values.workingTimeId = parseInt(values.workingTimeId);
       values.workingMethodId = parseInt(values.workingMethodId);
